@@ -41,7 +41,7 @@ test('gzip, manifest ve vendor dosyaları', async () => {
   const r = await fetch(base + '/manifest.webmanifest');
   assert.equal(r.status, 200);
   const j = await r.json();
-  assert.equal(j.short_name, 'Konuşma');
+  assert.equal(j.short_name, 'Teknodoz');
   assert.equal((await fetch(base + '/vendor/jszip.min.js')).status, 200);
   assert.equal((await fetch(base + '/sw.js')).status, 200);
 });

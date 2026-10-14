@@ -5,7 +5,9 @@ Sunucu **bağımlılıksızdır** (yalnızca Node.js yerleşik modülleri), `npm
 
 ## Özellikler
 - 4500+ kart: kelimeler ve cümleler, Türkçe çevirili, A1-C2 seviyeli
-- Duyarlı arayüz (mobil, tablet, masaüstü) ve alt menü
+- **Teknodoz** markası (logo + "Beta - Erken Erişim" etiketi), açık / koyu / sistem teması (üstteki 🌓 düğmesi)
+- Duyarlı arayüz: mobil ve tablette alt menü, masaüstünde (≥1024 px) sol dikey menü
+- Yardım > "Video ve kaynaklar": `public/index.html` içindeki `HELP_LINKS` dizisine YouTube, Google Drive (PDF) veya herhangi bir https bağlantısı eklenir
 - **Sade** mod (göz yormayan renkler, yalnızca kart + oynatıcı) ve **Detaylı** mod (tüm paneller)
 - Detaylı modda paneller açılır/kapanır ve ▲ ▼ düğmeleriyle yukarı aşağı taşınır; düzen tarayıcıda hatırlanır
 - Dinleme oynatıcısı: başlat, duraklat, durdur, hız, otomatik oynatma, tekrar sayısı

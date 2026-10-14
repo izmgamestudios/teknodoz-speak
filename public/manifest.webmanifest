@@ -1,13 +1,13 @@
 {
-  "name": "Konuşma Pratiği",
-  "short_name": "Konuşma",
+  "name": "Teknodoz Speak · Konuşma Pratiği (Beta)",
+  "short_name": "Teknodoz",
   "description": "Oxford 3000 kelimeleri ve aksiyon cümleleriyle İngilizce konuşma pratiği",
   "start_url": "./",
   "scope": "./",
   "display": "standalone",
   "orientation": "any",
-  "background_color": "#f6f5f1",
-  "theme_color": "#2b6cb0",
+  "background_color": "#ffffff",
+  "theme_color": "#2f8bff",
   "lang": "tr",
   "icons": [
     { "src": "icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any maskable" },

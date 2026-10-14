@@ -3,22 +3,24 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Konuşma Pratiği</title>
+<title>Konuşma Pratiği · Teknodoz Speak (Beta)</title>
 <meta name="author" content="Hüseyin Bayer">
-<meta name="theme-color" content="#2b6cb0">
+<meta name="theme-color" content="#ffffff">
 <meta name="mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-capable" content="yes">
-<meta name="apple-mobile-web-app-title" content="Konuşma">
+<meta name="apple-mobile-web-app-title" content="Teknodoz">
 <link rel="manifest" href="manifest.webmanifest">
 <link rel="icon" href="icon.svg" type="image/svg+xml">
 <link rel="apple-touch-icon" href="icon-192.png">
+<link rel="preload" as="image" href="logo.png">
 <style>
-:root{--bg:#f6f5f1;--card:#fff;--tx:#1d1d1b;--mut:#6b6a64;--ac:#2b6cb0;--ac2:#e8f0fa;--bd:#dcdad2;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px)}
+:root{--bg:#f6f5f1;--card:#fff;--tx:#1d1d1b;--mut:#6b6a64;--ac:#2b6cb0;--ac2:#e8f0fa;--bd:#dcdad2;box-sizing:border-box;--b1:#2f8bff;--b2:#b02fff;--hh:calc(60px + env(safe-area-inset-top,0px))}
 @media(prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#161615;--card:#222221;--tx:#efeee9;--mut:#a09f98;--ac:#6fa8e8;--ac2:#1f2a38;--bd:#3a3a38}}
 :root[data-theme="dark"]{--bg:#161615;--card:#222221;--tx:#efeee9;--mut:#a09f98;--ac:#6fa8e8;--ac2:#1f2a38;--bd:#3a3a38}
-html{scroll-padding-top:env(safe-area-inset-top,0px)}
+html{scroll-padding-top:calc(var(--hh) + 8px)}
 *{box-sizing:border-box}
-body{margin:0;background:var(--bg);color:var(--tx);font-family:system-ui,-apple-system,"Segoe UI",sans-serif;min-height:100vh}
+[hidden]{display:none!important}
+body{margin:0;padding-top:var(--hh);background:var(--bg);color:var(--tx);font-family:system-ui,-apple-system,"Segoe UI",sans-serif;min-height:100vh;-webkit-text-size-adjust:100%}
 main{max-width:1100px;margin:0 auto;padding:16px 16px calc(88px + env(safe-area-inset-bottom,0px))}
 h1{font-size:20px;margin:8px 0 12px}
 h2{font-size:16px;margin:18px 0 8px}
@@ -215,11 +217,58 @@ body.simple .toast{background:var(--card);color:var(--tx);border:1px solid var(-
 .pw.miss{background:rgba(214,69,69,.25);text-decoration:underline}
 #mic.listening{background:#d64545;color:#fff;border-color:#d64545}
 body.simple #mic.listening{background:#b08583;border-color:#b08583}
+
+/* ---- marka başlığı (logo + beta), tema düğmesi, odak ---- */
+:focus-visible{outline:2px solid var(--b1);outline-offset:2px}
+.top{position:fixed;top:0;left:0;right:0;z-index:55;height:var(--hh);padding:env(safe-area-inset-top,0px) max(12px,env(safe-area-inset-right,0px)) 0 max(12px,env(safe-area-inset-left,0px));display:flex;align-items:center;justify-content:space-between;gap:10px;background:var(--card);border-bottom:1px solid var(--bd)}
+.top::after{content:"";position:absolute;left:0;right:0;bottom:-1px;height:2px;background:linear-gradient(90deg,var(--b1),var(--b2));opacity:.85}
+.brand{display:flex;flex-direction:column;align-items:flex-start;gap:3px;border:0;background:transparent;padding:4px 6px;border-radius:10px;cursor:pointer;text-decoration:none}
+.brand img{height:26px;width:auto;display:block}
+.beta{font-size:10px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--b2);line-height:1;padding-left:2px}
+:root[data-theme="dark"] .beta{color:#d58bff}
+@media(prefers-color-scheme:dark){:root:not([data-theme="light"]) .beta{color:#d58bff}}
+.tbtns{display:flex;gap:8px}
+.ibtn{width:44px;height:44px;padding:0;display:inline-flex;align-items:center;justify-content:center;font-size:20px;border-radius:12px}
+.hlink{display:flex;gap:12px;align-items:center;text-decoration:none;color:var(--tx);border:1px solid var(--bd);border-radius:12px;padding:12px 14px;margin:8px 0;background:var(--card)}
+.hlink:hover{border-color:var(--ac)}
+.hlink .hi{font-size:26px;line-height:1}
+.hlink b{display:block}
+.hlink small{color:var(--mut);font-size:13px}
+.betabox{border:1px dashed var(--b2);border-radius:12px;padding:10px 14px;margin:0 0 12px;font-size:14px;line-height:1.5}
+@media(min-width:700px){
+  :root{--hh:calc(68px + env(safe-area-inset-top,0px))}
+  .brand img{height:32px}.beta{font-size:11px}
+  .bnav button{font-size:13px;padding:10px 4px}.bnav button .ic{font-size:22px}
+  main{padding-left:24px;padding-right:24px}
+}
+/* masaüstü: alt menü yerine sol dikey menü */
+@media(min-width:1024px){
+  body{padding-left:208px}
+  .top{padding-left:max(20px,env(safe-area-inset-left,0px));padding-right:max(20px,env(safe-area-inset-right,0px))}
+  .brand img{height:36px}
+  .bnav{top:var(--hh);bottom:0;right:auto;width:208px;flex-direction:column;justify-content:flex-start;align-items:stretch;gap:4px;padding:14px 10px;border-top:0;border-right:1px solid var(--bd);overflow-y:auto}
+  .bnav button{flex:none;max-width:none;flex-direction:row;justify-content:flex-start;gap:12px;padding:12px 14px;font-size:15px}
+  .bnav button:hover{background:var(--ac2)}
+  main{padding-bottom:40px}
+  .toast{bottom:28px;left:calc(50% + 104px)}
+}
+@media(min-width:1500px){main{max-width:1240px}}
+@media(max-width:380px){.brand img{height:22px}.ibtn{width:40px;height:40px}}
 </style>
 <script src="vendor/jspdf.umd.min.js"></script>
 <script src="vendor/jszip.min.js"></script>
 </head>
 <body>
+<header class="top">
+  <a class="brand" href="./" id="brand" aria-label="Teknodoz Speak, Beta - Erken Erişim">
+    <img src="logo.png" alt="Teknodoz" width="1024" height="289">
+    <span class="beta">Beta - Erken Erişim</span>
+  </a>
+  <div class="tbtns">
+    <button class="ibtn" id="thbtn" aria-label="Tema değiştir" title="Tema">🌓</button>
+    <button class="ibtn" id="hlpbtn" aria-label="Yardım ve SSS" title="Yardım">❓</button>
+  </div>
+</header>
 <main>
 <h1>Aksiyon Cümleleri Pratiği</h1>
 <div class="pbx" id="pbx" role="button" tabindex="0" aria-label="Oyuncu profili">
@@ -349,7 +398,7 @@ body.simple #mic.listening{background:#b08583;border-color:#b08583}
 </div>
 <div class="blk">
 <h2>Uygulama</h2>
-<p><b>Konuşma Pratiği</b> <span id="crver"></span></p>
+<p><b>Konuşma Pratiği</b> · Teknodoz Speak <span id="crver"></span> <span class="bdg on">Beta - Erken Erişim</span></p>
 <p class="hint">İngilizce konuşma pratiği: Oxford 3000 kelimeleri, aksiyon cümleleri, tonlama ve vurgu çalışmaları, aralıklı tekrar, sınav, WAV kayıt ve rapor.</p>
 <div id="crstats" class="hint"></div>
 </div>
@@ -372,6 +421,8 @@ body.simple #mic.listening{background:#b08583;border-color:#b08583}
 </section>
 
 <section id="v-h" hidden>
+<div class="betabox"><b>Beta - Erken Erişim.</b> Uygulama aktif olarak geliştiriliyor; hata veya önerini <a id="fbmail" href="mailto:izmgamestudios@gmail.com?subject=Teknodoz%20Speak%20Beta%20geri%20bildirim">e-posta ile</a> gönderebilirsin.</div>
+<div class="blk" id="hres" style="margin-bottom:12px"><h2>📚 Video ve kaynaklar</h2><div id="hreslist"></div></div>
 <div class="score" id="hstats" style="text-align:left"></div>
 <details open><summary>Bu uygulama nedir?</summary>
 <p>İngilizce konuşma pratiği için kısa (3-5 kelimelik) aksiyon cümleleri ve tek kelimelik kelime kartları. Her kart Türkçe çevirili ve A1-C2 seviyelidir. Amaç: cümleyi duy, yüksek sesle tekrar et, kendini kaydet, ilerlemeni etiketle.</p></details>
@@ -623,7 +674,10 @@ function recommend(){
 var GOAL=lsGet("kp_goal",20),RATE=lsGet("kp_rate",0.9),DAY=lsGet("kp_day",{d:"",n:0}),STK=lsGet("kp_stk",{last:"",n:0});
 var BESTS=lsGet("kp_bests",{});if(!BESTS[60])BESTS[60]=BEST;
 /* aralıklı tekrar (Leitner): kutu b, bir sonraki tekrar günü d */
-var APP_VERSION="2.2.0";
+var APP_VERSION="2.3.0";
+/* Yardım > "Video ve kaynaklar" listesi. Buraya YouTube, Google Drive (PDF) veya herhangi bir https bağlantısı eklenir.
+   Örnek: {t:"Hızlı başlangıç (video)",d:"2 dakikada uygulamayı tanı",u:"https://youtu.be/XXXXXXXXXXX"} */
+var HELP_LINKS=[];
 var BSTK=lsGet("kp_bstk",0);
 var FAV=lsGet("kp_fav",{}),HIST=lsGet("kp_hist",{});
 function ymdNum(k){var a=String(k).split("-");return (+a[0])*10000+(+a[1])*100+(+a[2])}
@@ -1378,10 +1432,15 @@ function applyTheme(){
   var r=document.documentElement;
   if(THEME==="light"||THEME==="dark")r.setAttribute("data-theme",THEME);else r.removeAttribute("data-theme");
   if($("sth"))$("sth").value=THEME;
+  var dark=THEME==="dark"||(THEME!=="light"&&window.matchMedia&&matchMedia("(prefers-color-scheme: dark)").matches);
+  var tc=document.querySelector('meta[name="theme-color"]');if(tc)tc.setAttribute("content",dark?"#222221":"#ffffff");
+  var tb=$("thbtn");if(tb){var ic=THEME==="light"?"☀️":THEME==="dark"?"🌙":"🌓",nm=THEME==="light"?"açık":THEME==="dark"?"koyu":"sistem";tb.textContent=ic;tb.title=tb.ariaLabel="Tema: "+nm+" (değiştirmek için dokun)"}
 }
 [["auto","Tema: sistem"],["light","Tema: açık"],["dark","Tema: koyu"]].forEach(function(x){var o=document.createElement("option");o.value=x[0];o.textContent=x[1];$("sth").appendChild(o)});
 applyTheme();
 $("sth").onchange=function(){THEME=this.value;lsSet("kp_theme",THEME);applyTheme()};
+$("thbtn").onclick=function(){THEME=THEME==="auto"?"light":THEME==="light"?"dark":"auto";lsSet("kp_theme",THEME);applyTheme()};
+if(window.matchMedia)try{matchMedia("(prefers-color-scheme: dark)").addEventListener("change",applyTheme)}catch(e){}
 [["en-US","Aksan: ABD İngilizcesi"],["en-GB","Aksan: İngiliz İngilizcesi"]].forEach(function(x){var o=document.createElement("option");o.value=x[0];o.textContent=x[1];$("sacc").appendChild(o)});
 $("sacc").value=ACC;if($("sacc").value!==ACC){ACC="en-US";$("sacc").value=ACC}
 $("sacc").onchange=function(){ACC=this.value;lsSet("kp_acc",ACC);pickVoice()};
@@ -1697,7 +1756,7 @@ function showTab(t){
   if(t==="q")qHistUi();
   if(t==="r"){badgesUi();drawReport()}
   if(t==="p")build(true);
-  if(t==="h")helpStats();
+  if(t==="h"){helpStats();helpLinksUi()}
   if(t==="c")creditsUi();
   if(t==="j"){gmRoll();journeyUi()}
   try{window.scrollTo(0,0)}catch(e){}
@@ -1705,6 +1764,22 @@ function showTab(t){
 document.querySelectorAll(".bnav button").forEach(function(b){b.onclick=function(){showTab(b.dataset.t)}});
 Array.prototype.forEach.call($("morebar").children,function(b){b.onclick=function(){showTab(b.dataset.m)}});
 $("pbx").onclick=function(){showTab("j")};
+$("hlpbtn").onclick=function(){showTab("h")};
+$("brand").onclick=function(e){e.preventDefault();showTab("p")};
+function helpLinksUi(){
+  var box=$("hreslist");box.textContent="";
+  var ok=HELP_LINKS.filter(function(x){return x&&/^https:\/\//i.test(x.u||"")});
+  if(!ok.length){var p=document.createElement("p");p.className="hint";p.textContent="Video ve PDF rehberleri yakında burada olacak.";box.appendChild(p);return}
+  ok.forEach(function(x){
+    var h=x.u,ic=/youtu\.?be/i.test(h)?"▶️":/drive\.google|docs\.google/i.test(h)?"📄":/\.pdf(\?|#|$)/i.test(h)?"📕":"🔗";
+    var kind=ic==="▶️"?"YouTube":ic==="📄"?"Google Drive":ic==="📕"?"PDF":"Bağlantı";
+    var a=document.createElement("a");a.className="hlink";a.href=h;a.target="_blank";a.rel="noopener noreferrer";
+    var i=document.createElement("span");i.className="hi";i.textContent=ic;
+    var w=document.createElement("span"),b=document.createElement("b"),sm=document.createElement("small");
+    b.textContent=x.t||kind;sm.textContent=(x.d?x.d+" · ":"")+kind;w.appendChild(b);w.appendChild(sm);
+    a.appendChild(i);a.appendChild(w);box.appendChild(a);
+  });
+}
 $("pbx").addEventListener("keydown",function(e){if(e.key==="Enter"||e.key===" "){e.preventDefault();showTab("j")}});
 $("mqchest").onclick=openChest;$("jchest").onclick=openChest;
 $("mqplan").onclick=function(){$("planbtn").click()};
