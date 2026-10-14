@@ -35,6 +35,7 @@ jobs:
           install -m 700 -d ~/.ssh
           # Accept a raw PEM or a single-line base64 value; strip CR and surrounding whitespace
           KEY="$(printf '%s' "$SSH_KEY" | tr -d '\r')"
+          echo "DEPLOY_SSH_KEY length: ${#KEY}; first 14 chars: ${KEY:0:14}"
           case "$KEY" in
             *BEGIN*) printf '%s\n' "$KEY" > ~/.ssh/id_deploy ;;
             *) printf '%s' "$KEY" | tr -d ' \n' | base64 -d > ~/.ssh/id_deploy ;;
