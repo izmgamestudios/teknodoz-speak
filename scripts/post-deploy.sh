@@ -10,4 +10,4 @@ else
   echo "pm2 not found: restart the Node.js site from CloudPanel (Sites > your site > Restart)."
 fi
 sleep 2
-curl -fsS "http://127.0.0.1:${PORT:-3000}/api/health" && echo " <- health OK" || echo "health check failed"
+curl -fsS "http://127.0.0.1:${PORT:-3147}/api/health" && echo " <- health OK" || echo "health check failed"

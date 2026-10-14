@@ -8,7 +8,7 @@ module.exports = {
     max_memory_restart: '300M',
     env: {
       NODE_ENV: 'production',
-      PORT: 3000,
+      PORT: 3147,
       HOST: '127.0.0.1',
       DATA_DIR: './data',
       SYNC_ENABLED: '0' // '1' yaparsan isteğe bağlı cihazlar arası eşitleme açılır
