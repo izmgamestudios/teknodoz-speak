@@ -1,0 +1,55 @@
+# .github/workflows/deploy.yml
+name: Test & Deploy
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+concurrency:
+  group: deploy
+  cancel-in-progress: false
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - run: npm test
+
+  deploy:
+    needs: test
+    if: github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Configure SSH
+        env:
+          SSH_KEY: ${{ secrets.DEPLOY_SSH_KEY }}
+          SSH_KNOWN_HOSTS: ${{ secrets.DEPLOY_KNOWN_HOSTS }}
+        run: |
+          install -m 700 -d ~/.ssh
+          printf '%s\n' "$SSH_KEY" > ~/.ssh/id_deploy
+          chmod 600 ~/.ssh/id_deploy
+          printf '%s\n' "$SSH_KNOWN_HOSTS" > ~/.ssh/known_hosts
+      - name: Sync files (data/ and .env are never touched)
+        env:
+          HOST: ${{ secrets.DEPLOY_HOST }}
+          USER: ${{ secrets.DEPLOY_USER }}
+          PATH_REMOTE: ${{ secrets.DEPLOY_PATH }}
+        run: |
+          rsync -az --delete \
+            --exclude '.git' --exclude '.github' --exclude 'node_modules' \
+            --exclude 'data' --exclude '.env' --exclude 'test' \
+            -e "ssh -i ~/.ssh/id_deploy" \
+            ./ "$USER@$HOST:$PATH_REMOTE/"
+      - name: Restart app
+        env:
+          HOST: ${{ secrets.DEPLOY_HOST }}
+          USER: ${{ secrets.DEPLOY_USER }}
+          PATH_REMOTE: ${{ secrets.DEPLOY_PATH }}
+        run: |
+          ssh -i ~/.ssh/id_deploy "$USER@$HOST" "cd '$PATH_REMOTE' && bash scripts/post-deploy.sh"

@@ -1,0 +1,16 @@
+{
+  "name": "teknodoz-speak",
+  "version": "2.2.0",
+  "description": "İngilizce konuşma pratiği: Oxford 3000 kelimeleri ve aksiyon cümleleri (Node.js, bağımlılıksız)",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "test": "node --test test/smoke.test.js"
+  },
+  "engines": {
+    "node": ">=18"
+  },
+  "license": "UNLICENSED",
+  "private": true,
+  "author": "Hüseyin Bayer <izmgamestudios@gmail.com>"
+}
