@@ -83,7 +83,7 @@ CloudPanel arayüzü sürüme göre küçük farklar gösterebilir, adımlar gen
 | `DEPLOY_USER` | CloudPanel site kullanıcısı |
 | `DEPLOY_PATH` | `/home/<kullanıcı>/htdocs/<alan-adı>` |
 | `DEPLOY_SSH_KEY` | `gh_deploy` özel anahtarının tüm içeriği |
-| `DEPLOY_KNOWN_HOSTS` | `ssh-keyscan -H <sunucu>` çıktısı |
+| `DEPLOY_KNOWN_HOSTS` | (isteğe bağlı) `ssh-keyscan -H <sunucu>` çıktısı; boşsa workflow kendisi tarar |
 
 4. İlk kurulumda sunucuda bir kez `pm2 start ecosystem.config.js && pm2 save` çalıştır (yukarıdaki 3. adım). Sonrası otomatik.
 
