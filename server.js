@@ -43,7 +43,7 @@ const SECURITY = {
     "style-src 'self' 'unsafe-inline'",
     "img-src 'self' data: blob:",
     "media-src 'self' blob:",
-    "connect-src 'self'",
+    "connect-src 'self' https://teknodoz-projects.ortakofis.org",
     "worker-src 'self'",
     "manifest-src 'self'",
     "frame-ancestors 'self'",

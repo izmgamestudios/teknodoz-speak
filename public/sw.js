@@ -1,6 +1,6 @@
 /* Servis çalışanı: çevrimdışı kullanım için statik dosyaları önbelleğe alır. API'ye dokunmaz. */
-const VERSION = 'kp-v10';
-const ASSETS = ['./', 'index.html', 'manifest.webmanifest', 'icon.svg', 'logo.png', 'icon-192.png', 'icon-512.png', 'vendor/jszip.min.js', 'vendor/jspdf.umd.min.js'];
+const VERSION = 'kp-v11';
+const ASSETS = ['./', 'index.html', 'manifest.webmanifest', 'icon.svg', 'logo.png', 'teknodoz-projects.js', 'teknodoz-projects.css', 'icon-192.png', 'icon-512.png', 'vendor/jszip.min.js', 'vendor/jspdf.umd.min.js'];
 
 self.addEventListener('install', (e) => {
   e.waitUntil(caches.open(VERSION).then((c) => Promise.all(ASSETS.map((a) => c.add(a).catch(() => null)))).then(() => self.skipWaiting()));
